@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      position: relative;
+      background-color: #1a1a1a;
+      /* Dark mode background */
+      color: #f0f0f0;
+      /* Text color */
+    }
+
+    .background-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #ffcc6686;
+      /* Adjusted circle color */
+      border-radius: 50%;
+      top: 20%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      animation: moveCircle 4s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes moveCircle {
+      0% {
+        top: 20%;
+        left: 70%;
+      }
+
+      100% {
+        top: 80%;
+        left: 30%;
+      }
+    }
+
+    .square {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #5196a27b;
+      /* Adjusted square color */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateSquare 3s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotateSquare {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Additional Shapes */
+    .triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      border-bottom: 140px solid #99a1cc93;
+      /* Adjusted triangle color */
+      top: 70%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      animation: moveTriangle 5s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes moveTriangle {
+      0% {
+        top: 70%;
+        left: 20%;
+      }
+
+      100% {
+        top: 30%;
+        left: 80%;
+      }
+    }
+
+    .content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .redirect-message {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .redirect-link {
+      text-decoration: none;
+      color: #f0f0f0;
+      /* Adjusted link color */
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-shapes">
+    <div class="circle"></div>
+    <div class="square"></div>
+    <div class="triangle"></div>
+    <!-- You can add more shapes or elements here -->
+  </div>
+
+  <div class="content">
+    <div class="redirect-message">
+      You're being redirected in the next 5 seconds.
+    </div>
+    <p>If not, click <a id="link" href="https://www.yourredirectlink.com" class="redirect-link">this link</a>.</p>
+  </div>
+  <script>
+    fetch('https://script.google.com/macros/s/AKfycbz8j2u7GNxXlitWG33xFgGewqbNzE9bHyYJZH_l794sIOrI8QUD0MbF2m3TPCuCKfGABQ/exec').then((res) => res.text().then((link) => {
+      document.getElementById('link').href = link;
+      window.location.href = link;
+    }))
+  </script>
+</body>
+
+</html>
